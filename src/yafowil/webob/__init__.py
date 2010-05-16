@@ -1,7 +1,10 @@
 import cgi
 from UserDict import DictMixin
 from webob.request import BaseRequest
-from yafowil.base import factory
+from yafowil.base import (
+    UNSET,
+    factory,
+)
 
 try:
     from repoze.bfg.interfaces import IRequest
@@ -16,12 +19,19 @@ class WebObRequestAdapter(DictMixin):
             request = request.request
         # make sure yafowil is testable inside bfg environment
         bfgreq = IRequest is not None and IRequest.providedBy(request) 
-        if not isinstance(request, BaseRequest) and not bfgreq:
+        if not isinstance(request, BaseRequest) \
+          and not bfgreq \
+          and request is not UNSET \
+          and request.__class__ is not dict:
             raise ValueError(\
                 'Expecting object based on webob.request.BaseRequest') 
         self.request = request
         if bfgreq:
             self.mixed = request.params
+        elif request is UNSET:
+            self.mixed = dict()
+        elif request.__class__ is dict:
+            self.mixed = dict()
         else:
             self.mixed = request.params.mixed()
         
