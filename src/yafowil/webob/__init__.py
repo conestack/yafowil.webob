@@ -1,4 +1,5 @@
 import cgi
+import types
 from UserDict import DictMixin
 from webob.request import BaseRequest
 from yafowil.base import (
@@ -36,7 +37,12 @@ class WebObRequestAdapter(DictMixin):
             self.mixed = request.params.mixed()
         
     def __getitem__(self, key):
-        value = self.mixed[key]
+        if hasattr(self.mixed, 'getall'):
+            value = self.mixed.getall(key)
+            if len(value) < 2:
+                value = self.mixed[key]
+        else:
+            value = self.mixed[key]
         if isinstance(value, cgi.FieldStorage):
             fvalue = dict()
             fvalue['file'] = value.file
