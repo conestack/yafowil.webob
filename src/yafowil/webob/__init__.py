@@ -1,22 +1,48 @@
 import cgi
+import types
 from UserDict import DictMixin
 from webob.request import BaseRequest
-from yafowil.base import factory
+from yafowil.base import (
+    UNSET,
+    factory,
+)
+
+try:
+    from repoze.bfg.interfaces import IRequest
+except ImportError:
+    IRequest = None
 
 class WebObRequestAdapter(DictMixin):
     
     def __init__(self, request):
         if isinstance(request, self.__class__):
             # for some rare cases this makes sense             
-            request = request.request 
-        if not isinstance(request, BaseRequest):
+            request = request.request
+        # make sure yafowil is testable inside bfg environment
+        bfgreq = IRequest is not None and IRequest.providedBy(request) 
+        if not isinstance(request, BaseRequest) \
+          and not bfgreq \
+          and request is not UNSET \
+          and request.__class__ is not dict:
             raise ValueError(\
                 'Expecting object based on webob.request.BaseRequest') 
         self.request = request
-        self.mixed = request.params.mixed()
+        if bfgreq:
+            self.mixed = request.params
+        elif request is UNSET:
+            self.mixed = dict()
+        elif request.__class__ is dict:
+            self.mixed = dict()
+        else:
+            self.mixed = request.params.mixed()
         
     def __getitem__(self, key):
-        value = self.mixed[key]
+        if hasattr(self.mixed, 'getall'):
+            value = self.mixed.getall(key)
+            if len(value) < 2:
+                value = self.mixed[key]
+        else:
+            value = self.mixed[key]
         if isinstance(value, cgi.FieldStorage):
             fvalue = dict()
             fvalue['file'] = value.file
