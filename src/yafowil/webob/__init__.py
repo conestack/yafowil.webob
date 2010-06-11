@@ -37,8 +37,8 @@ class WebObRequestAdapter(DictMixin):
         raise AttributeError('read only, __delitem__ is not supported')
     
 def webob_preprocessor(widget, data):
-    if not isinstance(data['request'], (dict, WebObRequestAdapter)):
-        data['request'] = WebObRequestAdapter(data['request'])
+    if not isinstance(data.request, (dict, WebObRequestAdapter)):
+        data.request = WebObRequestAdapter(data.request)
     return data
 
 factory.register_global_preprocessors([webob_preprocessor])
