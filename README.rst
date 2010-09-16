@@ -6,9 +6,9 @@ This is the WebOb integration for YAFOWIL - Yet Another Form WIdget Library.
 This package registers a global preprocessor for yafowil. It wraps the any WebOb 
 BaseRequest derived request instance. This includes ie. the BFG request class.
 
-Spezial behaviors: 
+Special behaviors: 
 
-- All WebOb params - available there in a so called ``MultiDict`` - are
+- All WebOb params - available at WebObs request in a so called ``MultiDict`` - are
   returned in MultiDicts ``mixed`` flavor. This is how Yafowil expects them. 
   IOW: If a query-key exists several times the values are aggregated in a list.
   If a query-key exists one time, the value is returned as string.  
