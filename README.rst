@@ -39,7 +39,7 @@ Changes
 
 - Initial: Make it work (jensens)
 
-Credits
-=======
+Contributors
+============
 
-- Written and concepted by Jens W. Klein <jens@bluedynamics.com>
+- Jens W. Klein <jens@bluedynamics.com>
