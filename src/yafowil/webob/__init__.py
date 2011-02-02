@@ -8,7 +8,7 @@ from yafowil.base import (
 )
 
 try:
-    from repoze.bfg.interfaces import IRequest
+    from pyramid.interfaces import IRequest
 except ImportError:
     IRequest = None
 
