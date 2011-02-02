@@ -24,7 +24,7 @@ class WebObRequestAdapter(DictMixin):
           and not bfgreq \
           and request is not UNSET \
           and request.__class__ is not dict:
-            raise ValueError(\
+            raise ValueError(
                 'Expecting object based on webob.request.BaseRequest') 
         self.request = request
         if bfgreq:
