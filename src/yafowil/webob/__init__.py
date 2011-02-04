@@ -54,7 +54,9 @@ class WebObRequestAdapter(DictMixin):
         return value
 
     def keys(self):
-        return self.request.params.keys()
+        if self.request:
+            return self.request.params.keys()
+        return list()
     
     def __setitem__(self, key, item):
         raise AttributeError('read only, __setitem__ is not supported')
