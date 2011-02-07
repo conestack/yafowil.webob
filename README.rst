@@ -4,7 +4,7 @@ Introduction
 This is the WebOb integration for YAFOWIL - Yet Another Form WIdget Library.
 
 This package registers a global preprocessor for yafowil. It wraps the any WebOb 
-BaseRequest derived request instance. This includes ie. the BFG request class.
+BaseRequest derived request instance.
 
 Special behaviors: 
 
@@ -31,15 +31,10 @@ Special behaviors:
   original
       keeps the original ``cgi.FieldStorage`` object
 
-Changes
-=======
-
-1.0 (work in progress)
-----------------------
-
-- Initial: Make it work (jensens)
 
 Contributors
 ============
 
 - Jens W. Klein <jens@bluedynamics.com>
+
+- Robert Niederrreiter <rnix@squarewave.at>

@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0-beta'
+version = '0.9'
+shortdesc = 'YAFOWIL - Yet Another Form Widget Lib: Integration with WebOb'
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'HISTORY.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'LICENSE.rst')).read()
-shortdesc = 'YAFOWIL - Yet Another Form Widget Lib: Integration with WebOb'
 tests_require = ['interlude']
 
 setup(name='yafowil.webob',
@@ -13,8 +13,6 @@ setup(name='yafowil.webob',
       description=shortdesc,
       long_description=longdesc,
       classifiers=[
-            #'Development Status :: 5 - Production/Stable',
-            'Development Status :: 4 - Beta',
             'Operating System :: OS Independent',
             'Programming Language :: Python',
             'Topic :: Software Development',
