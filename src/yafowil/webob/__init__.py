@@ -18,7 +18,7 @@ class WebObRequestAdapter(DictMixin):
         if isinstance(request, self.__class__):
             # for some rare cases this makes sense             
             request = request.request
-        # make sure yafowil is testable inside bfg environment
+        # make sure yafowil is testable inside pyramid environment
         pyramid_req = IRequest is not None and IRequest.providedBy(request) 
         if not isinstance(request, BaseRequest) \
           and not pyramid_req \
