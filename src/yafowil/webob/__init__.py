@@ -69,4 +69,5 @@ def webob_preprocessor(widget, data):
         data.request = WebObRequestAdapter(data.request)
     return data
 
-factory.register_global_preprocessors([webob_preprocessor])
+def register():
+    factory.register_global_preprocessors([webob_preprocessor])

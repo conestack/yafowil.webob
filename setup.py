@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0'
-shortdesc = 'YAFOWIL - Yet Another Form Widget Lib: Integration with WebOb'
+version = '1.1'
+shortdesc = 'WebOb Integration for YAFOWIL'
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'HISTORY.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'LICENSE.rst')).read()
@@ -32,11 +32,10 @@ setup(name='yafowil.webob',
       install_requires=[
           'setuptools',
           'WebOb',
-          'yafowil',
+          'yafowil>=1.3',
       ],
-      #tests_require=tests_require,
-      #test_suite="yafowil.zope2.tests.test_suite",
-      #extras_require = dict(
-      #    tests=tests_require,
-      #),
+      entry_points="""
+      [yafowil.plugin]
+      register = yafowil.webob:register
+      """,
 )

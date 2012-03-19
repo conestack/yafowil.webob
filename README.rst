@@ -1,7 +1,7 @@
 Introduction
 ============
 
-This is the WebOb integration for YAFOWIL - Yet Another Form WIdget Library.
+This is the WebOb integration for YAFOWIL.
 
 This package registers a global preprocessor for yafowil. It wraps the any WebOb 
 BaseRequest derived request instance.
@@ -30,6 +30,14 @@ Special behaviors:
       
   original
       keeps the original ``cgi.FieldStorage`` object
+
+Source Code
+===========
+
+The sources are in a GIT DVCS with its main branches at
+`github <http://github.com/bluedynamics/yafowil.webob`_.
+
+We'd be happy to see many forks and pull-requests to make YAFOWIL even better.
 
 
 Contributors
