@@ -12,6 +12,12 @@ try:
 except ImportError:
     IRequest = None
 
+try:
+    from pyramid.i18n import get_localizer
+except ImportError:
+    get_localizer = None
+
+
 class WebObRequestAdapter(DictMixin):
     
     def __init__(self, request):
@@ -63,11 +69,30 @@ class WebObRequestAdapter(DictMixin):
     
     def __delitem__(self, key):
         raise AttributeError('read only, __delitem__ is not supported')
+
+
+class TranslateCallable(object):
     
+    def __init__(self, data):
+        if isinstance(data.request, WebObRequestAdapter):
+            self.request = data.request.request
+        else:
+            self.request = data.request
+        
+    def __call__(self, msg):
+        if self.request and get_localizer:
+            localizer = get_localizer(self.request)
+            return localizer.translate(msg)
+        return msg
+
+
 def webob_preprocessor(widget, data):
     if not isinstance(data.request, (dict, WebObRequestAdapter)):
         data.request = WebObRequestAdapter(data.request)
+    if not isinstance(data.translate_callable, TranslateCallable):
+        data.translate_callable = TranslateCallable(data)
     return data
+
 
 def register():
     factory.register_global_preprocessors([webob_preprocessor])
