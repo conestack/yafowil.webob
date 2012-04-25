@@ -80,8 +80,9 @@ class TranslateCallable(object):
             self.request = data.request
         
     def __call__(self, msg):
-        if self.request and get_localizer:
-            localizer = get_localizer(self.request)
+        request = self.request
+        if request and not isinstance(request, dict) and get_localizer:
+            localizer = get_localizer(request)
             return localizer.translate(msg)
         return msg
 
