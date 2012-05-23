@@ -2,8 +2,8 @@
 History
 =======
 
-1.1.1dev
---------
+1.1.1
+-----
 
 - Provide translate callable for pyramid. soft dependency
   [rnix, 2012-04-24]
