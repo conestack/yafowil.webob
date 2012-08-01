@@ -43,6 +43,6 @@ We'd be happy to see many forks and pull-requests to make YAFOWIL even better.
 Contributors
 ============
 
-- Jens W. Klein <jens@bluedynamics.com>
+- Jens W. Klein <jens [at] bluedynamics [dot] com>
 
-- Robert Niederrreiter <rnix@squarewave.at>
+- Robert Niederrreiter <rnix [at] squarewave [dot] at>
