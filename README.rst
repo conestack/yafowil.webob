@@ -31,6 +31,12 @@ Special behaviors:
   original
       keeps the original ``cgi.FieldStorage`` object
 
+For more information about YAFOWIL:
+
+- `Documentation <http://docs.yafowil.info>`_
+- `DEMO - see it Live <http://demo.yafowil.info>`_
+
+
 Source Code
 ===========
 
