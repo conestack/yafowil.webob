@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.1.1'
+version = '1.1.2'
 shortdesc = 'WebOb Integration for YAFOWIL'
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'HISTORY.rst')).read()
@@ -22,7 +22,7 @@ setup(name='yafowil.webob',
       keywords='webob request response html input widgets',
       author='BlueDynamics Alliance',
       author_email='dev@bluedynamics.com',
-      url=u'http://packages.python.org/yafowil.webob',
+      url=u'http://pypi.python.org/pypi/yafowil.webob',
       license='Simplified BSD',
       packages=find_packages('src'),
       package_dir={'': 'src'},
