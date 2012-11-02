@@ -1,5 +1,9 @@
-from setuptools import setup, find_packages
 import os
+from setuptools import (
+    setup,
+    find_packages,
+)
+
 
 version = '1.1.2'
 shortdesc = 'WebOb Integration for YAFOWIL'
@@ -8,16 +12,17 @@ longdesc += open(os.path.join(os.path.dirname(__file__), 'HISTORY.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'LICENSE.rst')).read()
 tests_require = ['interlude']
 
+
 setup(name='yafowil.webob',
       version=version,
       description=shortdesc,
       long_description=longdesc,
       classifiers=[
-            'Operating System :: OS Independent',
-            'Programming Language :: Python',
-            'Topic :: Software Development',
-            'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
-            'License :: OSI Approved :: BSD License',                        
+          'Operating System :: OS Independent',
+          'Programming Language :: Python',
+          'Topic :: Software Development',
+          'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+          'License :: OSI Approved :: BSD License',                        
       ],
       keywords='webob request response html input widgets',
       author='BlueDynamics Alliance',
@@ -37,5 +42,4 @@ setup(name='yafowil.webob',
       entry_points="""
       [yafowil.plugin]
       register = yafowil.webob:register
-      """,
-)
+      """)
