@@ -1,3 +1,5 @@
+*~
+*#*
 *.pyc
-/src/yafowil.webob.egg-info
-/dist
+*.egg-info
+/dist/
