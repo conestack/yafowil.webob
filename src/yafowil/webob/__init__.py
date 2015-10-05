@@ -1,11 +1,9 @@
-import cgi
-import types
 from UserDict import DictMixin
 from webob.request import BaseRequest
-from yafowil.base import (
-    UNSET,
-    factory,
-)
+from yafowil.base import UNSET
+from yafowil.base import factory
+import cgi
+import types
 
 try:
     from pyramid.interfaces import IRequest
