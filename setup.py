@@ -3,7 +3,7 @@ from setuptools import setup
 import os
 
 
-version = '1.1.2'
+version = '1.2.dev0'
 shortdesc = 'WebOb Integration for YAFOWIL'
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'HISTORY.rst')).read()
@@ -36,7 +36,7 @@ setup(
     install_requires=[
         'setuptools',
         'WebOb',
-        'yafowil>=1.3',
+        'yafowil>2.1.99',
     ],
     entry_points="""
     [yafowil.plugin]

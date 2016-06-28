@@ -2,6 +2,7 @@ from UserDict import DictMixin
 from webob.request import BaseRequest
 from yafowil.base import UNSET
 from yafowil.base import factory
+from yafowil.utils import entry_point
 import cgi
 import types
 
@@ -93,5 +94,6 @@ def webob_preprocessor(widget, data):
     return data
 
 
+@entry_point(order=10)
 def register():
     factory.register_global_preprocessors([webob_preprocessor])
