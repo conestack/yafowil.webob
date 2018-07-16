@@ -1,10 +1,16 @@
-from UserDict import DictMixin
 from webob.request import BaseRequest
 from yafowil.base import UNSET
 from yafowil.base import factory
+from yafowil.compat import IS_PY2
 from yafowil.utils import entry_point
 import cgi
 import types
+
+
+if IS_PY2:
+    from UserDict import DictMixin
+else:
+    from collections import MutableMapping as DictMixin
 
 try:
     from pyramid.interfaces import IRequest
@@ -62,10 +68,19 @@ class WebObRequestAdapter(DictMixin):
         if self.request:
             return self.request.params.keys()
         return list()
-    
+
+    def __iter__(self):
+        if self.request:
+            return iter(self.request.params)
+
+    def __len__(self):
+        if self.request:
+            return len(self.request.params)
+        return 0
+
     def __setitem__(self, key, item):
         raise AttributeError('read only, __setitem__ is not supported')
-    
+
     def __delitem__(self, key):
         raise AttributeError('read only, __delitem__ is not supported')
 
