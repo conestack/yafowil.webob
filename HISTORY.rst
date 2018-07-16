@@ -2,10 +2,11 @@
 History
 =======
 
-1.3 (unreleased)
+1.3 (2018-07-16)
 ----------------
 
-- No changes yet.
+- Python 3 support.
+  [rnix]
 
 1.2
 ---
