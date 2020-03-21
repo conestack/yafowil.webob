@@ -1,10 +1,9 @@
 from webob.request import BaseRequest
-from yafowil.base import UNSET
 from yafowil.base import factory
+from yafowil.base import UNSET
 from yafowil.compat import IS_PY2
 from yafowil.utils import entry_point
 import cgi
-import types
 
 
 if IS_PY2:
@@ -24,19 +23,21 @@ except ImportError:
 
 
 class WebObRequestAdapter(DictMixin):
-    
+
     def __init__(self, request):
         if isinstance(request, self.__class__):
-            # for some rare cases this makes sense             
+            # for some rare cases this makes sense
+            # which are? -rn
             request = request.request
         # make sure yafowil is testable inside pyramid environment
-        pyramid_req = IRequest is not None and IRequest.providedBy(request) 
-        if not isinstance(request, BaseRequest) \
-          and not pyramid_req \
-          and request is not UNSET \
-          and request.__class__ is not dict:
-            raise ValueError(
-                'Expecting object based on webob.request.BaseRequest') 
+        pyramid_req = IRequest is not None and IRequest.providedBy(request)
+        if (
+            not isinstance(request, BaseRequest) and
+            not pyramid_req and
+            request is not UNSET and
+            request.__class__ is not dict
+        ):
+            raise ValueError('Expecting object based on webob.request.BaseRequest')
         self.request = request
         if pyramid_req:
             self.mixed = request.params
@@ -46,7 +47,7 @@ class WebObRequestAdapter(DictMixin):
             self.mixed = dict()
         else:
             self.mixed = request.params.mixed()
-        
+
     def __getitem__(self, key):
         if hasattr(self.mixed, 'getall'):
             value = self.mixed.getall(key)
@@ -79,20 +80,22 @@ class WebObRequestAdapter(DictMixin):
         return 0
 
     def __setitem__(self, key, item):
+        # XXX: KeyError would be more appropriate
         raise AttributeError('read only, __setitem__ is not supported')
 
     def __delitem__(self, key):
+        # XXX: KeyError would be more appropriate
         raise AttributeError('read only, __delitem__ is not supported')
 
 
 class TranslateCallable(object):
-    
+
     def __init__(self, data):
         if isinstance(data.request, WebObRequestAdapter):
             self.request = data.request.request
         else:
             self.request = data.request
-        
+
     def __call__(self, msg):
         request = self.request
         if request and not isinstance(request, dict) and get_localizer:
