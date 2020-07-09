@@ -1,5 +1,16 @@
-Introduction
-============
+.. image:: https://img.shields.io/pypi/v/yafowil.webob.svg
+    :target: https://pypi.python.org/pypi/yafowil.webob
+    :alt: Latest PyPI version
+
+.. image:: https://img.shields.io/pypi/dm/yafowil.webob.svg
+    :target: https://pypi.python.org/pypi/yafowil.webob
+    :alt: Number of PyPI downloads
+
+.. image:: https://travis-ci.org/bluedynamics/yafowil.webob.svg?branch=master
+    :target: https://travis-ci.org/bluedynamics/yafowil.webob
+
+.. image:: https://coveralls.io/repos/github/bluedynamics/yafowil.webob/badge.svg?branch=master
+    :target: https://coveralls.io/github/bluedynamics/yafowil.webob?branch=master
 
 This is the WebOb integration for YAFOWIL.
 
@@ -50,6 +61,5 @@ We'd be happy to see many forks and pull-requests to make YAFOWIL even better.
 Contributors
 ============
 
-- Jens W. Klein <jens [at] bluedynamics [dot] com>
-
-- Robert Niederrreiter <rnix [at] squarewave [dot] at>
+- Jens W. Klein
+- Robert Niederrreiter

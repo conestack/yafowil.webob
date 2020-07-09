@@ -3,11 +3,18 @@ from setuptools import setup
 import os
 
 
+def read_file(name):
+    with open(os.path.join(os.path.dirname(__file__), name)) as f:
+        return f.read()
+
+
 version = '1.4.dev0'
 shortdesc = 'WebOb Integration for YAFOWIL'
-longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
-longdesc += open(os.path.join(os.path.dirname(__file__), 'HISTORY.rst')).read()
-longdesc += open(os.path.join(os.path.dirname(__file__), 'LICENSE.rst')).read()
+longdesc = '\n\n'.join([read_file(name) for name in [
+    'README.rst',
+    'CHANGES.rst',
+    'LICENSE.rst'
+]])
 tests_require = ['interlude']
 
 
@@ -41,4 +48,5 @@ setup(
     entry_points="""
     [yafowil.plugin]
     register = yafowil.webob:register
-    """)
+    """
+)
