@@ -1,6 +1,6 @@
+from node.utils import UNSET
 from webob.request import BaseRequest
 from yafowil.base import factory
-from yafowil.base import UNSET
 from yafowil.compat import IS_PY2
 from yafowil.utils import entry_point
 import cgi
@@ -32,10 +32,10 @@ class WebObRequestAdapter(DictMixin):
         # make sure yafowil is testable inside pyramid environment
         pyramid_req = IRequest is not None and IRequest.providedBy(request)
         if (
-            not isinstance(request, BaseRequest) and
-            not pyramid_req and
-            request is not UNSET and
-            request.__class__ is not dict
+            not isinstance(request, BaseRequest)
+            and not pyramid_req
+            and request is not UNSET
+            and request.__class__ is not dict
         ):
             raise ValueError('Expecting object based on webob.request.BaseRequest')
         self.request = request
