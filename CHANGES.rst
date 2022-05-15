@@ -4,7 +4,8 @@ Changes
 1.4 (unreleased)
 ----------------
 
-- No changes yet.
+- Python 3.10 support.
+  [rnix]
 
 
 1.3 (2018-07-16)

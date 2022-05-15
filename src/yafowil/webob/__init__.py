@@ -5,11 +5,10 @@ from yafowil.compat import IS_PY2
 from yafowil.utils import entry_point
 import cgi
 
-
-if IS_PY2:
-    from UserDict import DictMixin
-else:
-    from collections import MutableMapping as DictMixin
+try:  # pragma: no cover
+    from collections.abc import MutableMapping
+except ImportError:  # pragma: no cover
+    from collections import MutableMapping
 
 try:
     from pyramid.interfaces import IRequest
@@ -22,7 +21,7 @@ except ImportError:
     get_localizer = None
 
 
-class WebObRequestAdapter(DictMixin):
+class WebObRequestAdapter(MutableMapping):
 
     def __init__(self, request):
         if isinstance(request, self.__class__):
