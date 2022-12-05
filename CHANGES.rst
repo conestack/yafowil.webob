@@ -4,6 +4,9 @@ Changes
 1.4 (unreleased)
 ----------------
 
+- Release wheel.
+  [rnix]
+
 - Python 3.10 support.
   [rnix]
 
