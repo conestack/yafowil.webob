@@ -1,7 +1,7 @@
 Changes
 =======
 
-1.5 (unreleased)
+1.5 (2025-10-28)
 ----------------
 
 - Pin upper versions of dependencies.
