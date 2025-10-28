@@ -43,7 +43,7 @@ setup(
     install_requires=[
         'setuptools',
         'WebOb',
-        'yafowil>2.1.99',
+        'yafowil>2.1.99,<4.0.0',
     ],
     entry_points="""
     [yafowil.plugin]
