@@ -24,7 +24,7 @@ classifiers = [
 ]
 dependencies = [
     "WebOb",
-    "yafowil>2.1.99",
+    "yafowil>3.99",
 ]
 
 [project.entry-points."yafowil.plugin"]
