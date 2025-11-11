@@ -1,6 +1,11 @@
-*~
-*#*
-*.pyc
 *.egg-info
-/dist/
+*.pyc
+*#*
+*~
+/.coverage
+/.mxmake/
 /build
+/constraints-mxdev.txt
+/dist/
+/requirements-mxdev.txt
+/sources/
