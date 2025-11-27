@@ -7,5 +7,6 @@
 /build
 /constraints-mxdev.txt
 /dist/
+/venv/
 /requirements-mxdev.txt
 /sources/
