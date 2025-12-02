@@ -47,6 +47,11 @@ fragments = [
     {path = "LICENSE.rst"},
 ]
 
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "/Makefile",
+]
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/yafowil"]
 
