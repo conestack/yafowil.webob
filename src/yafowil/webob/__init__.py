@@ -67,6 +67,7 @@ class WebObRequestAdapter(MutableMapping):
     def __iter__(self):
         if self.request:
             return iter(self.request.params)
+        return iter(())
 
     def __len__(self):
         if self.request:

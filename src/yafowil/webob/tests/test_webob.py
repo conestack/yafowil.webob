@@ -52,6 +52,7 @@ class TestWebObRequestAdapter(YafowilTestCase):
         adapter = WebObRequestAdapter(UNSET)
         self.assertEqual(adapter.mixed, {})
         self.assertEqual(list(adapter.keys()), [])
+        self.assertEqual(list(adapter), [])
         self.assertEqual(len(adapter), 0)
 
     def test_dict_request(self):

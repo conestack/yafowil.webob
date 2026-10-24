@@ -4,6 +4,10 @@ Changes
 2.0.1 (unreleased)
 ------------------
 
+- Fix ``WebObRequestAdapter.__iter__`` returning ``None`` instead of an
+  empty iterator for an unset request, ``iter(adapter)`` raised ``TypeError``.
+  [rnix]
+
 - Modernise the code ruff flags as outdated: ``class X(object)``. Behaviour
   unchanged.
   [rnix]
