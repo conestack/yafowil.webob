@@ -4,6 +4,19 @@ Changes
 2.0.1 (unreleased)
 ------------------
 
+- Modernise the code ruff flags as outdated: ``class X(object)``. Behaviour
+  unchanged.
+  [rnix]
+
+- Sort the imports with ruff (one per line, ``from`` imports first, no
+  sections) and format the code with ``ruff format`` (90 characters per line,
+  single quotes).
+  [rnix]
+
+- Add ``qa.ruff`` domain to Makefile and pin the ruff configuration in
+  ``pyproject.toml``, ``make check`` runs ``ruff check``.
+  [rnix]
+
 - Add tests, the package had none. Add ``test`` extra and fix
   ``mxmake-source-path`` in ``mx.ini``.
   [rnix]

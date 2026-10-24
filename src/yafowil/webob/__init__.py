@@ -5,6 +5,7 @@ from yafowil.base import factory
 from yafowil.utils import entry_point
 import cgi
 
+
 try:
     from pyramid.interfaces import IRequest
 except ImportError:
@@ -17,7 +18,6 @@ except ImportError:
 
 
 class WebObRequestAdapter(MutableMapping):
-
     def __init__(self, request):
         if isinstance(request, self.__class__):
             # for some rare cases this makes sense
@@ -82,8 +82,7 @@ class WebObRequestAdapter(MutableMapping):
         raise AttributeError('read only, __delitem__ is not supported')
 
 
-class TranslateCallable(object):
-
+class TranslateCallable:
     def __init__(self, data):
         if isinstance(data.request, WebObRequestAdapter):
             self.request = data.request.request

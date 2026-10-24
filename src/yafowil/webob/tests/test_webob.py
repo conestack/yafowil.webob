@@ -4,13 +4,13 @@ from unittest import mock
 from webob import Request
 from webob.multidict import MultiDict
 from yafowil import webob as yafowil_webob
-from yafowil.base import RuntimeData
 from yafowil.base import factory
+from yafowil.base import RuntimeData
 from yafowil.tests import YafowilTestCase
-from yafowil.webob import TranslateCallable
-from yafowil.webob import WebObRequestAdapter
 from yafowil.webob import register
+from yafowil.webob import TranslateCallable
 from yafowil.webob import webob_preprocessor
+from yafowil.webob import WebObRequestAdapter
 import cgi
 import importlib
 import sys
@@ -27,7 +27,6 @@ def pyramid_request_interface():
 
 
 class TestWebObRequestAdapter(YafowilTestCase):
-
     def test_params_are_mixed(self):
         request = Request.blank('/?a=1&b=2&b=3')
         adapter = WebObRequestAdapter(request)
@@ -63,23 +62,21 @@ class TestWebObRequestAdapter(YafowilTestCase):
         with self.assertRaises(ValueError) as arc:
             WebObRequestAdapter(object())
         self.assertEqual(
-            str(arc.exception),
-            'Expecting object based on webob.request.BaseRequest'
+            str(arc.exception), 'Expecting object based on webob.request.BaseRequest'
         )
 
     def test_file_upload(self):
         request = Request.blank('/', POST={'upload': ('foo.txt', b'content')})
         value = WebObRequestAdapter(request)['upload']
         self.assertEqual(
-            sorted(value),
-            ['file', 'filename', 'headers', 'mimetype', 'original']
+            sorted(value), ['file', 'filename', 'headers', 'mimetype', 'original']
         )
         self.assertEqual(value['file'].read(), b'content')
         self.assertEqual(value['filename'], 'foo.txt')
         self.assertEqual(value['mimetype'], 'text/plain')
         self.assertEqual(
             value['headers']['Content-Disposition'],
-            'form-data; name="upload"; filename="foo.txt"'
+            'form-data; name="upload"; filename="foo.txt"',
         )
         self.assertIsInstance(value['original'], cgi.FieldStorage)
 
@@ -87,24 +84,14 @@ class TestWebObRequestAdapter(YafowilTestCase):
         adapter = WebObRequestAdapter(Request.blank('/?a=1'))
         with self.assertRaises(AttributeError) as arc:
             adapter['a'] = '2'
-        self.assertEqual(
-            str(arc.exception),
-            'read only, __setitem__ is not supported'
-        )
+        self.assertEqual(str(arc.exception), 'read only, __setitem__ is not supported')
         with self.assertRaises(AttributeError) as arc:
             del adapter['a']
-        self.assertEqual(
-            str(arc.exception),
-            'read only, __delitem__ is not supported'
-        )
+        self.assertEqual(str(arc.exception), 'read only, __delitem__ is not supported')
 
     def test_pyramid_request(self):
         request = pyramid_request(('a', '1'), ('b', '2'), ('b', '3'))
-        with mock.patch.object(
-            yafowil_webob,
-            'IRequest',
-            pyramid_request_interface()
-        ):
+        with mock.patch.object(yafowil_webob, 'IRequest', pyramid_request_interface()):
             adapter = WebObRequestAdapter(request)
         self.assertIs(adapter.mixed, request.params)
         self.assertEqual(adapter['a'], '1')
@@ -112,7 +99,6 @@ class TestWebObRequestAdapter(YafowilTestCase):
 
 
 class TestTranslateCallable(YafowilTestCase):
-
     def test_unwraps_adapter(self):
         request = Request.blank('/')
         data = SimpleNamespace(request=WebObRequestAdapter(request))
@@ -140,7 +126,6 @@ class TestTranslateCallable(YafowilTestCase):
 
 
 class TestPreprocessor(YafowilTestCase):
-
     def test_webob_preprocessor(self):
         data = RuntimeData(request=Request.blank('/?a=1'))
         webob_preprocessor(None, data)
@@ -170,13 +155,11 @@ class TestPreprocessor(YafowilTestCase):
 
 
 class TestWithoutPyramid(YafowilTestCase):
-
     def test_pyramid_imports_are_optional(self):
         try:
-            with mock.patch.dict(sys.modules, {
-                'pyramid.interfaces': None,
-                'pyramid.i18n': None
-            }):
+            with mock.patch.dict(
+                sys.modules, {'pyramid.interfaces': None, 'pyramid.i18n': None}
+            ):
                 importlib.reload(yafowil_webob)
                 self.assertIsNone(yafowil_webob.IRequest)
                 self.assertIsNone(yafowil_webob.get_localizer)
