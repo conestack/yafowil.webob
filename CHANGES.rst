@@ -4,7 +4,9 @@ Changes
 2.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Drop the Python 2 remnants: ``yafowil.compat`` usage, ``IS_PY2`` branches and
+  the ``collections`` import fallback.
+  [rnix]
 
 
 2.0.0 (2026-02-03)

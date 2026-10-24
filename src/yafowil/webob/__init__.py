@@ -1,14 +1,9 @@
+from collections.abc import MutableMapping
 from node.utils import UNSET
 from webob.request import BaseRequest
 from yafowil.base import factory
-from yafowil.compat import IS_PY2
 from yafowil.utils import entry_point
 import cgi
-
-try:  # pragma: no cover
-    from collections.abc import MutableMapping
-except ImportError:  # pragma: no cover
-    from collections import MutableMapping
 
 try:
     from pyramid.interfaces import IRequest
