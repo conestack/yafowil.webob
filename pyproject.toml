@@ -28,6 +28,12 @@ dependencies = [
     "yafowil>3.99",
 ]
 
+[project.optional-dependencies]
+test = [
+    "lxml",
+    "pytest",
+]
+
 [project.entry-points."yafowil.plugin"]
 register = "yafowil.webob:register"
 

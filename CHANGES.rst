@@ -4,6 +4,10 @@ Changes
 2.0.1 (unreleased)
 ------------------
 
+- Add tests, the package had none. Add ``test`` extra and fix
+  ``mxmake-source-path`` in ``mx.ini``.
+  [rnix]
+
 - Drop the Python 2 remnants: ``yafowil.compat`` usage, ``IS_PY2`` branches and
   the ``collections`` import fallback.
   [rnix]
