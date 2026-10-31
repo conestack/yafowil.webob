@@ -1,7 +1,7 @@
 Changes
 =======
 
-2.0.1 (unreleased)
+2.0.1 (2026-10-31)
 ------------------
 
 - Fix ``WebObRequestAdapter.__iter__`` returning ``None`` instead of an
